@@ -324,6 +324,17 @@ def build_training_clusters(params, debug):
     with open(params['LIST'], 'r') as f:
         reader = csv.reader(f)
         next(reader)
+
+        for r in reader:
+            print("Ben Orr 8.8.24:")
+            print(f'Current row: {r}')
+            print('parser.parse(r[1]):')
+            print(f'{parser.parse(r[1])}')
+            print(f"parser.parse(params['DATCUT'])")
+            print(parser.parse(params['DATCUT']))
+            print("parser.parse(r[1])<=parser.parse(params['DATCUT']) evaluates to:")
+            print(parser.parse(r[1])<=parser.parse(params['DATCUT']))
+
         rows = [[r[0],r[3],int(r[4])] for r in reader
                 if float(r[2])<=params['RESCUT'] and
                 parser.parse(r[1])<=parser.parse(params['DATCUT'])]
