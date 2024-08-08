@@ -320,7 +320,7 @@ def build_training_clusters(params, debug):
         val_ids = []
         test_ids = []
  
-    # read & clean list.csv
+    # Debug by looking through the list.csv
     with open(params['LIST'], 'r') as f:
         reader = csv.reader(f)
         next(reader)
@@ -328,19 +328,23 @@ def build_training_clusters(params, debug):
         for r in reader:
             print("Ben Orr 8.8.24:")
             print(f'Current row: {r}')
-            print('parser.parse(r[1]):')
-            print(f'{parser.parse(r[1])}')
             print("float(r[2]):")
             print(float(r[2]))
             print("params['RESCUT']")
             print(params['RESCUT'])
             print("float(r[2])<=params['RESCUT'] evaluates to:")
             print(float(r[2])<=params['RESCUT'])
+            print('parser.parse(r[1]):')
+            print(f'{parser.parse(r[1])}')
             print(f"parser.parse(params['DATCUT'])")
             print(parser.parse(params['DATCUT']))
             print("parser.parse(r[1])<=parser.parse(params['DATCUT']) evaluates to:")
             print(parser.parse(r[1])<=parser.parse(params['DATCUT']))
 
+    # read & clean list.csv
+    with open(params['LIST'], 'r') as f:
+        reader = csv.reader(f)
+        next(reader)
         rows = [[r[0],r[3],int(r[4])] for r in reader
                 if float(r[2])<=params['RESCUT'] and
                 parser.parse(r[1])<=parser.parse(params['DATCUT'])]
