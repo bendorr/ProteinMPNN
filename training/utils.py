@@ -339,6 +339,8 @@ def build_training_clusters(params, debug):
                 if float(r[2])<=params['RESCUT'] and
                 parser.parse(r[1])<=parser.parse(params['DATCUT'])]
     
+    print(f"\nBen Orr 8.8.24: Length of rows is: {len(rows)}") 
+
     # compile training and validation sets
     train = {}
     valid = {}
@@ -346,7 +348,11 @@ def build_training_clusters(params, debug):
 
     if debug:
         rows = rows[:20]
+
+    print("\nBen Orr 8.8.24: Iterating over rows and distributing into datasets:")
     for r in rows:
+        print(f'Current row: {r}')
+
         if r[2] in val_ids:
             if r[2] in valid.keys():
                 valid[r[2]].append(r[:2])
@@ -362,6 +368,12 @@ def build_training_clusters(params, debug):
                 train[r[2]].append(r[:2])
             else:
                 train[r[2]] = [r[:2]]
+
+    print("\nBen Orr 8.8.24: train valid and test dicts:")
+    print(train)
+    print(valid)
+    print(test)
+
     if debug:
         valid=train       
     return train, valid, test
