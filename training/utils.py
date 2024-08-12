@@ -142,6 +142,15 @@ def get_pdbs(data_loader, repeat=1, max_length=10000, num_units=1000000):
         for step,t in enumerate(data_loader):
             t = {k:v[0] for k,v in t.items()}
             c1 += 1
+
+            print(f"\nBen Orr 8.11.24: utils.py line 146: step, t in enumerate(data_loader):") 
+            print(f"step:")
+            print(f"{step}")
+            print(f"t:")
+            print(f"{t}")
+            print(f"c1:")
+            print(f"{c1}")
+
             if 'label' in list(t):
                 my_dict = {}
                 s = 0
