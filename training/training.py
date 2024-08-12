@@ -162,8 +162,24 @@ def main(args):
 
                     optimizer.step()
                 
+                print(f"\nBen Orr 8.11.24: Inputs to loss_nll:") 
+                print(f"S:")
+                print(f"{S}")
+                print(f"log_probs:")
+                print(f"{log_probs}")
+                print(f"mask_for_loss:")
+                print(f"{mask_for_loss}")
+
                 loss, loss_av, true_false = loss_nll(S, log_probs, mask_for_loss)
             
+                print(f"\nBen Orr 8.11.24: Outputs from loss_nll:") 
+                print(f"loss:")
+                print(f"{loss}")
+                print(f"loss_av:")
+                print(f"{loss_av}")
+                print(f"true_false:")
+                print(f"{true_false}")
+
                 train_sum += torch.sum(loss * mask_for_loss).cpu().data.numpy()
                 train_acc += torch.sum(true_false * mask_for_loss).cpu().data.numpy()
                 train_weights += torch.sum(mask_for_loss).cpu().data.numpy()
@@ -184,6 +200,12 @@ def main(args):
                     validation_acc += torch.sum(true_false * mask_for_loss).cpu().data.numpy()
                     validation_weights += torch.sum(mask_for_loss).cpu().data.numpy()
             
+            print(f"\nBen Orr 8.11.24: train_sum and train_weights:") 
+            print(f"train_sum:")
+            print(f"{train_sum}")
+            print(f"train_weights:")
+            print(f"{train_weights}")
+
             train_loss = train_sum / train_weights
             train_accuracy = train_acc / train_weights
             train_perplexity = np.exp(train_loss)
