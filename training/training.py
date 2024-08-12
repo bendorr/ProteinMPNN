@@ -78,8 +78,8 @@ def main(args):
     print(f"{len(train_set)}")
     print(f"train_loader:")
     print(f"{len(train_loader)}")
-    print(f"train_loader[0]:")
-    print(f"{train_loader[0]}")
+    print(f"next(train_loader):")
+    print(f"{next(train_loader)}")
 
 
     model = ProteinMPNN(node_features=args.hidden_dim, 
