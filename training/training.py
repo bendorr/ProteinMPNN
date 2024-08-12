@@ -73,6 +73,13 @@ def main(args):
     valid_loader = torch.utils.data.DataLoader(valid_set, worker_init_fn=worker_init_fn, **LOAD_PARAM)
 
 
+    print(f"\nBen Orr 8.11.24: Train set and train loader lengths:") 
+    print(f"train_set:")
+    print(f"{len(train_set)}")
+    print(f"train_loader:")
+    print(f"{len(train_loader)}")
+
+
     model = ProteinMPNN(node_features=args.hidden_dim, 
                         edge_features=args.hidden_dim, 
                         hidden_dim=args.hidden_dim, 
@@ -134,6 +141,11 @@ def main(args):
                     p.put_nowait(executor.submit(get_pdbs, valid_loader, 1, args.max_protein_length, args.num_examples_per_epoch))
                 reload_c += 1
             for _, batch in enumerate(loader_train):
+
+                print(f"\nBen Orr 8.11.24: Current batch is:") 
+                print(f"batch:")
+                print(f"{batch}")
+
                 start_batch = time.time()
                 X, S, mask, lengths, chain_M, residue_idx, mask_self, chain_encoding_all = featurize(batch, device)
                 elapsed_featurize = time.time() - start_batch
