@@ -78,6 +78,8 @@ def main(args):
     print(f"{len(train_set)}")
     print(f"train_loader:")
     print(f"{len(train_loader)}")
+    print(f"train_loader[0]:")
+    print(f"{train_loader[0]}")
 
 
     model = ProteinMPNN(node_features=args.hidden_dim, 
@@ -110,7 +112,7 @@ def main(args):
     else:
         total_step = 0
         epoch = 0
-        
+
         print(f"\nBen Orr 8.11.24: No model checkpoint loaded.") 
 
 

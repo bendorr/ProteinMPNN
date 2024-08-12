@@ -144,12 +144,10 @@ def get_pdbs(data_loader, repeat=1, max_length=10000, num_units=1000000):
             c1 += 1
 
             print(f"\nBen Orr 8.11.24: utils.py line 146: step, t in enumerate(data_loader):") 
-            print(f"step:")
-            print(f"{step}")
-            print(f"t:")
-            print(f"{t}")
-            print(f"c1:")
-            print(f"{c1}")
+            print(f"step: {step}")
+            print(f"t: {t}")
+            print(f"c1: {c1}")
+            print(f"if 'label' in list(t): evaluates to: {'label' in list(t)}")
 
             if 'label' in list(t):
                 my_dict = {}
