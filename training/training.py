@@ -100,6 +100,16 @@ def main(args):
         total_step = 0
         epoch = 0
 
+    print(f"\nBen Orr 8.11.24: Loaded checkpoint:") 
+    print(f"checkpoint:")
+    print(f"{checkpoint}")
+    print(f"total_step:")
+    print(f"{total_step}")
+    print(f"epoch:")
+    print(f"{epoch}")
+    print(f"checkpoint['model_state_dict']:")
+    print(f"{checkpoint['model_state_dict']}")
+
     optimizer = get_std_opt(model.parameters(), args.hidden_dim, total_step)
 
 
@@ -133,7 +143,7 @@ def main(args):
         print(f"\nBen Orr 8.11.24: loader_train:") 
         print(f"loader_train:")
         print(f"{loader_train}")
-        
+
         reload_c = 0 
         for e in range(args.num_epochs):
             t0 = time.time()
