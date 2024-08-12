@@ -115,12 +115,24 @@ def main(args):
             p.put_nowait(executor.submit(get_pdbs, valid_loader, 1, args.max_protein_length, args.num_examples_per_epoch))
         pdb_dict_train = q.get().result()
         pdb_dict_valid = p.get().result()
+
+        print(f"\nBen Orr 8.11.24: pdb_dict_train:") 
+        print(f"pdb_dict_train:")
+        print(f"{pdb_dict_train}")
        
         dataset_train = StructureDataset(pdb_dict_train, truncate=None, max_length=args.max_protein_length) 
         dataset_valid = StructureDataset(pdb_dict_valid, truncate=None, max_length=args.max_protein_length)
         
+        print(f"\nBen Orr 8.11.24: dataset_train:") 
+        print(f"dataset_train:")
+        print(f"{dataset_train}")
+
         loader_train = StructureLoader(dataset_train, batch_size=args.batch_size)
         loader_valid = StructureLoader(dataset_valid, batch_size=args.batch_size)
+        
+        print(f"\nBen Orr 8.11.24: loader_train:") 
+        print(f"loader_train:")
+        print(f"{loader_train}")
         
         reload_c = 0 
         for e in range(args.num_epochs):
