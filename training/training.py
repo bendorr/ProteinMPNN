@@ -96,19 +96,23 @@ def main(args):
         total_step = checkpoint['step'] #write total_step from the checkpoint
         epoch = checkpoint['epoch'] #write epoch from the checkpoint
         model.load_state_dict(checkpoint['model_state_dict'])
+
+        print(f"\nBen Orr 8.11.24: Loaded checkpoint:") 
+        print(f"checkpoint:")
+        print(f"{checkpoint}")
+        print(f"total_step:")
+        print(f"{total_step}")
+        print(f"epoch:")
+        print(f"{epoch}")
+        print(f"checkpoint['model_state_dict']:")
+        print(f"{checkpoint['model_state_dict']}")
+
     else:
         total_step = 0
         epoch = 0
+        
+        print(f"\nBen Orr 8.11.24: No model checkpoint loaded.") 
 
-    print(f"\nBen Orr 8.11.24: Loaded checkpoint:") 
-    print(f"checkpoint:")
-    print(f"{checkpoint}")
-    print(f"total_step:")
-    print(f"{total_step}")
-    print(f"epoch:")
-    print(f"{epoch}")
-    print(f"checkpoint['model_state_dict']:")
-    print(f"{checkpoint['model_state_dict']}")
 
     optimizer = get_std_opt(model.parameters(), args.hidden_dim, total_step)
 
