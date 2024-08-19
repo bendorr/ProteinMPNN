@@ -80,6 +80,10 @@ def main(args):
     print(f"{len(train_loader)}")
     # print(f"next(train_loader):")
     # print(f"{next(train_loader)}") # This doesn't work because DataLoader is not an iterator
+    for temp_i, temp_sample in enumerate(train_loader)
+        print(f"temp_sample #{temp_i}:")
+        print(temp_sample)
+        if temp_i > 5: break
 
     model = ProteinMPNN(node_features=args.hidden_dim, 
                         edge_features=args.hidden_dim, 
@@ -125,7 +129,7 @@ def main(args):
     with ProcessPoolExecutor(max_workers=12) as executor:
         q = queue.Queue(maxsize=3)
         p = queue.Queue(maxsize=3)
-        for i in range(3):
+        for i in range(1): # Ben Orr 8.19.24: previously range(3)
             q.put_nowait(executor.submit(get_pdbs, train_loader, 1, args.max_protein_length, args.num_examples_per_epoch))
             p.put_nowait(executor.submit(get_pdbs, valid_loader, 1, args.max_protein_length, args.num_examples_per_epoch))
         pdb_dict_train = q.get().result()
