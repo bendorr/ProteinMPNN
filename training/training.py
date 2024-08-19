@@ -80,7 +80,7 @@ def main(args):
     print(f"{len(train_loader)}")
     # print(f"next(train_loader):")
     # print(f"{next(train_loader)}") # This doesn't work because DataLoader is not an iterator
-    for temp_i, temp_sample in enumerate(train_loader)
+    for temp_i, temp_sample in enumerate(train_loader):
         print(f"temp_sample #{temp_i}:")
         print(temp_sample)
         if temp_i > 5: break
