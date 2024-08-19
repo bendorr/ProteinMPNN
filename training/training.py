@@ -76,13 +76,22 @@ def main(args):
     print(f"\nBen Orr 8.11.24: Train set and train loader lengths:") 
     print(f"train_set:")
     print(f"{len(train_set)}")
+    for temp_i, temp_sample in enumerate(train_set):
+        print(f"train_set temp_sample #{temp_i}:")
+        print(temp_sample)
+        # print(f"train_set temp_sample['seq'].shape:")
+        # print(temp_sample['seq'].shape)
+        if temp_i > 5: break
+
     print(f"train_loader:")
     print(f"{len(train_loader)}")
     # print(f"next(train_loader):")
     # print(f"{next(train_loader)}") # This doesn't work because DataLoader is not an iterator
     for temp_i, temp_sample in enumerate(train_loader):
-        print(f"temp_sample #{temp_i}:")
-        print(temp_sample)
+        print(f"train_loader temp_sample #{temp_i}:")
+        print(temp_sample) # These all contain: {'seq': tensor([[0., 0., 0., 0., 0.]], dtype=torch.float64)}
+        print(f"train_loader temp_sample['seq'].shape:")
+        print(temp_sample['seq'].shape)
         if temp_i > 5: break
 
     model = ProteinMPNN(node_features=args.hidden_dim, 
