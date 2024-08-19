@@ -66,7 +66,7 @@ def main(args):
         args.batch_size = 1000
 
     train, valid, test = build_training_clusters(params, args.debug)
-     
+    
     train_set = PDB_dataset(list(train.keys()), loader_pdb, train, params)
     train_loader = torch.utils.data.DataLoader(train_set, worker_init_fn=worker_init_fn, **LOAD_PARAM)
     valid_set = PDB_dataset(list(valid.keys()), loader_pdb, valid, params)
