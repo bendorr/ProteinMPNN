@@ -78,9 +78,8 @@ def main(args):
     print(f"{len(train_set)}")
     print(f"train_loader:")
     print(f"{len(train_loader)}")
-    print(f"next(train_loader):")
-    print(f"{next(train_loader)}")
-
+    # print(f"next(train_loader):")
+    # print(f"{next(train_loader)}") # This doesn't work because DataLoader is not an iterator
 
     model = ProteinMPNN(node_features=args.hidden_dim, 
                         edge_features=args.hidden_dim, 
