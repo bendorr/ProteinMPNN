@@ -240,6 +240,7 @@ def loader_pdb(item,params):
     
     # load metadata
     if not os.path.isfile(PREFIX+".pt"):
+        print(f"{PREFIX+'.pt'} not found. Returning empty training example.")
         return {'seq': np.zeros(5)}
     meta = torch.load(PREFIX+".pt")
     asmb_ids = meta['asmb_ids']
