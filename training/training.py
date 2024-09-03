@@ -105,8 +105,13 @@ def main(args):
         except:
             print(f"Key ['step'] not found in self.previous_checkpoint. Setting total_step to 0.")
             total_step = 0
-        
-        epoch = checkpoint['epoch'] #write epoch from the checkpoint
+
+        try:
+            epoch = checkpoint['epoch'] #write epoch from the checkpoint
+        except:
+            print(f"Key ['epoch'] not found in self.previous_checkpoint. Setting epoch to 0.")
+            epoch = 0
+
         model.load_state_dict(checkpoint['model_state_dict'])
 
         print(f"\nBen Orr 8.11.24: Loaded checkpoint:") 
