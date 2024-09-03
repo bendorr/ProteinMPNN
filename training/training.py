@@ -73,19 +73,18 @@ def main(args):
     valid_loader = torch.utils.data.DataLoader(valid_set, worker_init_fn=worker_init_fn, **LOAD_PARAM)
 
 
-    print(f"\nBen Orr 8.11.24: Train set and train loader lengths:") 
-    print(f"train_set:")
+    print(f"len(train_set):")
     print(f"{len(train_set)}")
-    for temp_i, temp_sample in enumerate(train_set):
-        print(f"train_set temp_sample #{temp_i}:")
-        print(temp_sample)
-        if temp_i > 5: break
+    # for temp_i, temp_sample in enumerate(train_set):
+    #     print(f"train_set temp_sample #{temp_i}:")
+    #     print(temp_sample)
+    #     if temp_i > 5: break
 
-    print(f"train_loader:")
+    print(f"len(train_loader):")
     print(f"{len(train_loader)}")
-    for temp_i, temp_sample in enumerate(train_loader):
-        print(f"train_loader temp_sample #{temp_i}:")
-        print(temp_sample)
+    # for temp_i, temp_sample in enumerate(train_loader):
+    #     print(f"train_loader temp_sample #{temp_i}:")
+    #     print(temp_sample)
 
     model = ProteinMPNN(node_features=args.hidden_dim, 
                         edge_features=args.hidden_dim, 
@@ -114,7 +113,7 @@ def main(args):
 
         model.load_state_dict(checkpoint['model_state_dict'])
 
-        print(f"\nBen Orr 8.11.24: Loaded checkpoint:") 
+        print(f"\nLoaded checkpoint:") 
         print(f"checkpoint:")
         print(f"{checkpoint}")
         print(f"total_step:")
@@ -128,7 +127,7 @@ def main(args):
         total_step = 0
         epoch = 0
 
-        print(f"\nBen Orr 8.11.24: No model checkpoint loaded.") 
+        print(f"\nNo model checkpoint loaded.") 
 
 
     optimizer = get_std_opt(model.parameters(), args.hidden_dim, total_step)
@@ -149,23 +148,20 @@ def main(args):
         pdb_dict_train = q.get().result()
         pdb_dict_valid = p.get().result()
 
-        print(f"\nBen Orr 8.11.24: pdb_dict_train:") 
-        print(f"pdb_dict_train:")
-        print(f"{pdb_dict_train}")
+        # print(f"pdb_dict_train:")
+        # print(f"{pdb_dict_train}")
        
         dataset_train = StructureDataset(pdb_dict_train, truncate=None, max_length=args.max_protein_length) 
         dataset_valid = StructureDataset(pdb_dict_valid, truncate=None, max_length=args.max_protein_length)
         
-        print(f"\nBen Orr 8.11.24: dataset_train:") 
-        print(f"dataset_train:")
-        print(f"{dataset_train}")
+        # print(f"dataset_train:")
+        # print(f"{dataset_train}")
 
         loader_train = StructureLoader(dataset_train, batch_size=args.batch_size)
         loader_valid = StructureLoader(dataset_valid, batch_size=args.batch_size)
         
-        print(f"\nBen Orr 8.11.24: loader_train:") 
-        print(f"loader_train:")
-        print(f"{loader_train}")
+        # print(f"loader_train:")
+        # print(f"{loader_train}")
 
         reload_c = 0 
         for e in range(args.num_epochs):
@@ -187,7 +183,6 @@ def main(args):
                 reload_c += 1
             for _, batch in enumerate(loader_train):
 
-                print(f"\nBen Orr 8.11.24: Current batch is:") 
                 print(f"batch:")
                 print(f"{batch}")
 
@@ -219,23 +214,23 @@ def main(args):
 
                     optimizer.step()
                 
-                print(f"\nBen Orr 8.11.24: Inputs to loss_nll:") 
-                print(f"S:")
-                print(f"{S}")
-                print(f"log_probs:")
-                print(f"{log_probs}")
-                print(f"mask_for_loss:")
-                print(f"{mask_for_loss}")
+                # print(f"\nInputs to loss_nll:") 
+                # print(f"S:")
+                # print(f"{S}")
+                # print(f"log_probs:")
+                # print(f"{log_probs}")
+                # print(f"mask_for_loss:")
+                # print(f"{mask_for_loss}")
 
                 loss, loss_av, true_false = loss_nll(S, log_probs, mask_for_loss)
             
-                print(f"\nBen Orr 8.11.24: Outputs from loss_nll:") 
-                print(f"loss:")
-                print(f"{loss}")
-                print(f"loss_av:")
-                print(f"{loss_av}")
-                print(f"true_false:")
-                print(f"{true_false}")
+                # print(f"\nOutputs from loss_nll:") 
+                # print(f"loss:")
+                # print(f"{loss}")
+                # print(f"loss_av:")
+                # print(f"{loss_av}")
+                # print(f"true_false:")
+                # print(f"{true_false}")
 
                 train_sum += torch.sum(loss * mask_for_loss).cpu().data.numpy()
                 train_acc += torch.sum(true_false * mask_for_loss).cpu().data.numpy()
@@ -256,12 +251,11 @@ def main(args):
                     validation_sum += torch.sum(loss * mask_for_loss).cpu().data.numpy()
                     validation_acc += torch.sum(true_false * mask_for_loss).cpu().data.numpy()
                     validation_weights += torch.sum(mask_for_loss).cpu().data.numpy()
-            
-            print(f"\nBen Orr 8.11.24: train_sum and train_weights:") 
-            print(f"train_sum:")
-            print(f"{train_sum}")
-            print(f"train_weights:")
-            print(f"{train_weights}")
+
+            # print(f"train_sum:")
+            # print(f"{train_sum}")
+            # print(f"train_weights:")
+            # print(f"{train_weights}")
 
             train_loss = train_sum / train_weights
             train_accuracy = train_acc / train_weights

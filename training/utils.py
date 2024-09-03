@@ -143,11 +143,11 @@ def get_pdbs(data_loader, repeat=1, max_length=10000, num_units=1000000):
             t = {k:v[0] for k,v in t.items()}
             c1 += 1
 
-            print(f"\nBen Orr 8.11.24: utils.py line 146: step, t in enumerate(data_loader):") 
-            print(f"step: {step}")
-            print(f"t: {t}")
-            print(f"c1: {c1}")
-            print(f"if 'label' in list(t): evaluates to: {'label' in list(t)}")
+            # print(f"\nstep, t in enumerate(data_loader):") 
+            # print(f"step: {step}")
+            # print(f"t: {t}")
+            # print(f"c1: {c1}")
+            # print(f"if 'label' in list(t): evaluates to: {'label' in list(t)}")
 
             if 'label' in list(t):
                 my_dict = {}
@@ -328,26 +328,25 @@ def build_training_clusters(params, debug):
         val_ids = []
         test_ids = []
  
-    # Debug by looking through the list.csv
-    with open(params['LIST'], 'r') as f:
-        reader = csv.reader(f)
-        next(reader)
+    ## Debug by looking through the list.csv
+    # with open(params['LIST'], 'r') as f:
+    #     reader = csv.reader(f)
+    #     next(reader)
 
-        for r in reader:
-            print("Ben Orr 8.8.24:")
-            print(f'Current row: {r}')
-            print("float(r[2]):")
-            print(float(r[2]))
-            print("params['RESCUT']")
-            print(params['RESCUT'])
-            print("float(r[2])<=params['RESCUT'] evaluates to:")
-            print(float(r[2])<=params['RESCUT'])
-            print('parser.parse(r[1]):')
-            print(f'{parser.parse(r[1])}')
-            print(f"parser.parse(params['DATCUT'])")
-            print(parser.parse(params['DATCUT']))
-            print("parser.parse(r[1])<=parser.parse(params['DATCUT']) evaluates to:")
-            print(parser.parse(r[1])<=parser.parse(params['DATCUT']))
+    #     for r in reader:
+    #         print(f'Current row: {r}')
+    #         print("float(r[2]):")
+    #         print(float(r[2]))
+    #         print("params['RESCUT']")
+    #         print(params['RESCUT'])
+    #         print("float(r[2])<=params['RESCUT'] evaluates to:")
+    #         print(float(r[2])<=params['RESCUT'])
+    #         print('parser.parse(r[1]):')
+    #         print(f'{parser.parse(r[1])}')
+    #         print(f"parser.parse(params['DATCUT'])")
+    #         print(parser.parse(params['DATCUT']))
+    #         print("parser.parse(r[1])<=parser.parse(params['DATCUT']) evaluates to:")
+    #         print(parser.parse(r[1])<=parser.parse(params['DATCUT']))
 
     # read & clean list.csv
     with open(params['LIST'], 'r') as f:
@@ -357,7 +356,7 @@ def build_training_clusters(params, debug):
                 if float(r[2])<=params['RESCUT'] and
                 parser.parse(r[1])<=parser.parse(params['DATCUT'])]
     
-    print(f"\nBen Orr 8.8.24: Length of rows is: {len(rows)}") 
+    print(f"\nLength of filtered list.csv is: {len(rows)}") 
 
     # compile training and validation sets
     train = {}
@@ -367,7 +366,7 @@ def build_training_clusters(params, debug):
     if debug:
         rows = rows[:20]
 
-    print("\nBen Orr 8.8.24: Iterating over rows and distributing into datasets:")
+    print("\nIterating over rows and distributing into datasets:")
     for r in rows:
         print(f'Current row: {r}')
 
@@ -387,7 +386,7 @@ def build_training_clusters(params, debug):
             else:
                 train[r[2]] = [r[:2]]
 
-    print("\nBen Orr 8.8.24: train valid and test dicts:")
+    print("\ntrain, valid, and test dicts:")
     print(train)
     print(valid)
     print(test)
