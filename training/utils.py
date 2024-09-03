@@ -236,9 +236,7 @@ class PDB_dataset(torch.utils.data.Dataset):
 def loader_pdb(item,params):
 
     pdbid,chid = item[0].split('_')
-    # with a lot of training examples, split into subdirs named pdbid[1:3]
-    # PREFIX = "%s/pdb/%s/%s"%(params['DIR'],pdbid[1:3],pdbid)
-    PREFIX = "%s/pdb/%s"%(params['DIR'],pdbid)
+    PREFIX = "%s/pdb/%s/%s"%(params['DIR'],pdbid[1:3],pdbid)
     
     # load metadata
     if not os.path.isfile(PREFIX+".pt"):
