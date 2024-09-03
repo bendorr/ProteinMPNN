@@ -100,7 +100,12 @@ def main(args):
 
     if PATH:
         checkpoint = torch.load(PATH)
-        total_step = checkpoint['step'] #write total_step from the checkpoint
+        try:
+            total_step = checkpoint['step'] #write total_step from the checkpoint
+        except:
+            print(f"Key ['step'] not found in self.previous_checkpoint. Setting total_step to 0.")
+            total_step = 0
+        
         epoch = checkpoint['epoch'] #write epoch from the checkpoint
         model.load_state_dict(checkpoint['model_state_dict'])
 
