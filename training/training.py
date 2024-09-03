@@ -113,15 +113,15 @@ def main(args):
 
         model.load_state_dict(checkpoint['model_state_dict'])
 
-        print(f"\nLoaded checkpoint:") 
-        print(f"checkpoint:")
-        print(f"{checkpoint}")
-        print(f"total_step:")
-        print(f"{total_step}")
-        print(f"epoch:")
-        print(f"{epoch}")
-        print(f"checkpoint['model_state_dict']:")
-        print(f"{checkpoint['model_state_dict']}")
+        # print(f"\nLoaded checkpoint:") 
+        # print(f"checkpoint:")
+        # print(f"{checkpoint}")
+        # print(f"total_step:")
+        # print(f"{total_step}")
+        # print(f"epoch:")
+        # print(f"{epoch}")
+        # print(f"checkpoint['model_state_dict']:")
+        # print(f"{checkpoint['model_state_dict']}")
 
     else:
         total_step = 0
@@ -183,8 +183,8 @@ def main(args):
                 reload_c += 1
             for _, batch in enumerate(loader_train):
 
-                print(f"batch:")
-                print(f"{batch}")
+                # print(f"batch:")
+                # print(f"{batch}")
 
                 start_batch = time.time()
                 X, S, mask, lengths, chain_M, residue_idx, mask_self, chain_encoding_all = featurize(batch, device)
