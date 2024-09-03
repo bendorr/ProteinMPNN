@@ -135,8 +135,10 @@ def main(args):
 
 
     if PATH:
-        optimizer.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-
+        try:
+            optimizer.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        except:
+            print(f"Key ['optimizer_state_dict'] not found in self.previous_checkpoint. Initializing optimizer without previous_checkpoint.optimizer_state_dict")
 
     with ProcessPoolExecutor(max_workers=12) as executor:
         q = queue.Queue(maxsize=3)
