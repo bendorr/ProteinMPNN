@@ -185,6 +185,7 @@ def main(args):
 
                 # print(f"batch:")
                 # print(f"{batch}")
+                print(f"Training example: {batch['name']}")
 
                 start_batch = time.time()
                 X, S, mask, lengths, chain_M, residue_idx, mask_self, chain_encoding_all = featurize(batch, device)
