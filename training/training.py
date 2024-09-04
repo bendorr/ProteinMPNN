@@ -102,13 +102,13 @@ def main(args):
         try:
             total_step = checkpoint['step'] #write total_step from the checkpoint
         except:
-            print(f"Key ['step'] not found in self.previous_checkpoint. Setting total_step to 0.")
+            print(f"Key 'step' not found in self.previous_checkpoint. Setting total_step to 0.")
             total_step = 0
 
         try:
             epoch = checkpoint['epoch'] #write epoch from the checkpoint
         except:
-            print(f"Key ['epoch'] not found in self.previous_checkpoint. Setting epoch to 0.")
+            print(f"Key 'epoch' not found in self.previous_checkpoint. Setting epoch to 0.")
             epoch = 0
 
         model.load_state_dict(checkpoint['model_state_dict'])
@@ -137,7 +137,7 @@ def main(args):
         try:
             optimizer.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         except:
-            print(f"Key ['optimizer_state_dict'] not found in self.previous_checkpoint. Initializing optimizer without previous_checkpoint.optimizer_state_dict")
+            print(f"Key 'optimizer_state_dict' not found in self.previous_checkpoint. Initializing optimizer without previous_checkpoint.optimizer_state_dict")
 
     with ProcessPoolExecutor(max_workers=12) as executor:
         q = queue.Queue(maxsize=3)
@@ -185,7 +185,7 @@ def main(args):
 
                 # print(f"batch:")
                 # print(f"{batch}")
-                print(f"Training example: {batch['name']}")
+                print(f"Training examples: {[item['name'] for item in batch]}")
 
                 start_batch = time.time()
                 X, S, mask, lengths, chain_M, residue_idx, mask_self, chain_encoding_all = featurize(batch, device)
