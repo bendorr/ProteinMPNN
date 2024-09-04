@@ -183,9 +183,7 @@ def main(args):
                 reload_c += 1
             for _, batch in enumerate(loader_train):
 
-                # print(f"batch:")
-                # print(f"{batch}")
-                print(f"Training examples: {[item['name'] for item in batch]}")
+                # print(f"Training examples: {[sample['name'] for sample in batch]}")
 
                 start_batch = time.time()
                 X, S, mask, lengths, chain_M, residue_idx, mask_self, chain_encoding_all = featurize(batch, device)
