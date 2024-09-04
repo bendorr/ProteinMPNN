@@ -368,7 +368,7 @@ def build_training_clusters(params, debug):
 
     print("\nIterating over rows and distributing into datasets:")
     for r in rows:
-        print(f'Current row: {r}')
+        # print(f'Current row: {r}')
 
         if r[2] in val_ids:
             if r[2] in valid.keys():
