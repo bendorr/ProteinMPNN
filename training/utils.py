@@ -340,7 +340,6 @@ def build_training_clusters(params, debug):
     if debug:
         rows = rows[:20]
 
-    print("\nIterating over rows and distributing into datasets:")
     for r in rows:
         # print(f'Current row: {r}')
 
@@ -360,10 +359,11 @@ def build_training_clusters(params, debug):
             else:
                 train[r[2]] = [r[:2]]
 
-    print("\ntrain, valid, and test dicts:")
-    print(train)
-    print(valid)
-    print(test)
+    if debug:
+        print("\ntrain, valid, and test dicts:")
+        print(train)
+        print(valid)
+        print(test)
 
     if debug:
         valid=train       

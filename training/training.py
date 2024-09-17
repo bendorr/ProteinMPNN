@@ -75,16 +75,14 @@ def main(args):
 
     print(f"len(train_set):")
     print(f"{len(train_set)}")
-    # for temp_i, temp_sample in enumerate(train_set):
-    #     print(f"train_set temp_sample #{temp_i}:")
-    #     print(temp_sample)
-    #     if temp_i > 5: break
+    print(f"len(valid_set):")
+    print(f"{len(valid_set)}")
 
-    print(f"len(train_loader):")
-    print(f"{len(train_loader)}")
-    # for temp_i, temp_sample in enumerate(train_loader):
-    #     print(f"train_loader temp_sample #{temp_i}:")
-    #     print(temp_sample)
+    if args.debug:
+        for temp_i, temp_sample in enumerate(train_set):
+            print(f"train_set temp_sample #{temp_i}:")
+            print(temp_sample)
+            if temp_i > 5: break
 
     model = ProteinMPNN(node_features=args.hidden_dim, 
                         edge_features=args.hidden_dim, 
