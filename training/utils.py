@@ -143,12 +143,6 @@ def get_pdbs(data_loader, repeat=1, max_length=10000, num_units=1000000):
             t = {k:v[0] for k,v in t.items()}
             c1 += 1
 
-            # print(f"\nstep, t in enumerate(data_loader):") 
-            # print(f"step: {step}")
-            # print(f"t: {t}")
-            # print(f"c1: {c1}")
-            # print(f"if 'label' in list(t): evaluates to: {'label' in list(t)}")
-
             if 'label' in list(t):
                 my_dict = {}
                 s = 0
@@ -327,26 +321,6 @@ def build_training_clusters(params, debug):
     if debug:
         val_ids = []
         test_ids = []
- 
-    ## Debug by looking through the list.csv
-    # with open(params['LIST'], 'r') as f:
-    #     reader = csv.reader(f)
-    #     next(reader)
-
-    #     for r in reader:
-    #         print(f'Current row: {r}')
-    #         print("float(r[2]):")
-    #         print(float(r[2]))
-    #         print("params['RESCUT']")
-    #         print(params['RESCUT'])
-    #         print("float(r[2])<=params['RESCUT'] evaluates to:")
-    #         print(float(r[2])<=params['RESCUT'])
-    #         print('parser.parse(r[1]):')
-    #         print(f'{parser.parse(r[1])}')
-    #         print(f"parser.parse(params['DATCUT'])")
-    #         print(parser.parse(params['DATCUT']))
-    #         print("parser.parse(r[1])<=parser.parse(params['DATCUT']) evaluates to:")
-    #         print(parser.parse(r[1])<=parser.parse(params['DATCUT']))
 
     # read & clean list.csv
     with open(params['LIST'], 'r') as f:
